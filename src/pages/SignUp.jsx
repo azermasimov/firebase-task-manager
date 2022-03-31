@@ -1,5 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { db } from "../firebase.config";
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +25,31 @@ function SignUp() {
     }));
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const user = userCredential.user;
+
+      updateProfile(auth.currentUser, {
+        displayName: name,
+      });
+
+      console.log(user);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div>
@@ -26,7 +57,7 @@ function SignUp() {
           <p>Welcome Back</p>
         </header>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <input
             type="text"
             placeholder="Name"
@@ -53,7 +84,9 @@ function SignUp() {
             />
           </div>
 
-          <p onClick={() => setShowPassword((prevState) => !prevState)}>Show Password</p>
+          <p onClick={() => setShowPassword((prevState) => !prevState)}>
+            Show Password
+          </p>
 
           <Link to="/forgot-password">Forgot Password</Link>
 
