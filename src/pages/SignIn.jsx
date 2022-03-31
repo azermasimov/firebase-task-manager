@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,26 @@ function SignIn() {
     }));
   };
 
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const auth = getAuth();
+
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div>
@@ -25,7 +46,7 @@ function SignIn() {
           <p>Welcome Back</p>
         </header>
 
-        <form>
+        <form onSubmit={onSubmit}>
           <input
             type="email"
             placeholder="Email"
@@ -44,11 +65,11 @@ function SignIn() {
             />
           </div>
 
-          <p onClick={() => setShowPassword((prevState) => !prevState)}>Show Password</p>
-        
-          <Link to="/forgot-password">
-            Forgot Password
-          </Link>
+          <p onClick={() => setShowPassword((prevState) => !prevState)}>
+            Show Password
+          </p>
+
+          <Link to="/forgot-password">Forgot Password</Link>
 
           <div>
             <button>Sign In</button>
@@ -57,9 +78,7 @@ function SignIn() {
 
         {/* Google OAuth */}
 
-        <Link to="/sign-up">
-          Sign Up instead
-        </Link>
+        <Link to="/sign-up">Sign Up instead</Link>
       </div>
     </>
   );
