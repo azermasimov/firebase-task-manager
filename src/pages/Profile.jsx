@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getAuth, updateProfile } from "firebase/auth";
 import { updateDoc, doc } from "firebase/firestore";
 import { db } from "../firebase.config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 function Profile() {
@@ -91,6 +91,10 @@ function Profile() {
             />
           </form>
         </div>
+
+        <Link to="/create-product">
+          <button>Sell Your Product</button>
+        </Link>
       </main>
     </div>
   );
