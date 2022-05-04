@@ -12,6 +12,7 @@ import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import CreateProduct from "./pages/CreateProduct";
 import Product from "./pages/Product";
+import Contact from "./pages/Contact";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-product" element={<CreateProduct />} />
           <Route path="/category/:categoryName/:productId" element={<Product />} />
+          <Route path="/contact/:salespersonId" element={<Contact />} />
         </Routes>
       </Router>
 
