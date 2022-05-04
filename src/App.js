@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import CreateProduct from "./pages/CreateProduct";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-product" element={<CreateProduct />} />
+          <Route path="/category/:categoryName/:productId" element={<Product />} />
         </Routes>
       </Router>
 
