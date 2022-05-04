@@ -13,6 +13,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import CreateProduct from "./pages/CreateProduct";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/create-product" element={<CreateProduct />} />
           <Route path="/category/:categoryName/:productId" element={<Product />} />
           <Route path="/contact/:salespersonId" element={<Contact />} />
+          <Route path="/contact-us" element={<ContactUs/>} />
         </Routes>
       </Router>
 
