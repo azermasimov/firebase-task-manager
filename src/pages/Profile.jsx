@@ -99,6 +99,8 @@ function Profile() {
     }
   };
 
+  const onEdit = (productId) => navigate(`/edit-product/${productId}`);
+
   return (
     <div>
       <header>
@@ -154,6 +156,7 @@ function Profile() {
                   product={product.data}
                   id={product.id}
                   onDelete={() => onDelete(product.id)}
+                  onEdit={() => onEdit(product.id)}
                 />
               ))}
             </ul>

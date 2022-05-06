@@ -11,6 +11,7 @@ import SignUp from "./pages/SignUp";
 import Profile from "./pages/Profile";
 import ForgotPassword from "./pages/ForgotPassword";
 import CreateProduct from "./pages/CreateProduct";
+import EditProduct from "./pages/EditProduct";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
 import ContactUs from "./pages/ContactUs";
@@ -27,13 +28,17 @@ function App() {
           <Route path="/profile" element={<PrivateRoute />}>
             <Route path="/profile" element={<Profile />} />
           </Route>
+          <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-product" element={<CreateProduct />} />
-          <Route path="/category/:categoryName/:productId" element={<Product />} />
+          <Route path="/edit-product/:productId" element={<EditProduct />} />
+          <Route
+            path="/category/:categoryName/:productId"
+            element={<Product />}
+          />
           <Route path="/contact/:salespersonId" element={<Contact />} />
-          <Route path="/contact-us" element={<ContactUs/>} />
         </Routes>
       </Router>
 
