@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/bundle";
 import { getDoc, doc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { db } from "../firebase.config";
@@ -33,7 +36,22 @@ function Product() {
 
   return (
     <main>
-      {/* SLIDER */}
+      <Swiper
+        modules={[Navigation, Pagination, Scrollbar, A11y]}
+        spaceBetween={50}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+        scrollbar={{ draggable: true }}
+        onSwiper={(swiper) => console.log(swiper)}
+        onSlideChange={() => console.log("Slide Change")}
+      >
+        {product.imgUrls.map((url, index) => (
+          <SwiperSlide key={index}>
+            <img src={product.imgUrls[index]} alt="Product Slide" />
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       <div
         onClick={() => {
@@ -68,11 +86,11 @@ function Product() {
         <p>For {product.type}</p>
 
         {auth.currentUser?.uid !== product.userRef && (
-            <Link 
-                to={`/contact/${product.userRef}?productName=${product.productName}`}
-            >
-                Book Now
-            </Link>
+          <Link
+            to={`/contact/${product.userRef}?productName=${product.productName}`}
+          >
+            Book Now
+          </Link>
         )}
       </div>
     </main>
