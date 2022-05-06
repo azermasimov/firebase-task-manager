@@ -17,11 +17,12 @@ import ProductItem from "../components/ProductItem";
 function Offers() {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lastFetchedProducts, setLastFetchedProducts] = useState(null);
 
   const params = useParams();
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    (async function fetchProducts() {
       try {
         // Get reference
         const productsRef = collection(db, "products");
@@ -37,6 +38,10 @@ function Offers() {
         // Execute query
         const querySnap = await getDocs(q);
 
+        const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+
+        setLastFetchedProducts(lastVisible);
+
         const products = [];
 
         querySnap.forEach((doc) => {
@@ -51,10 +56,46 @@ function Offers() {
       } catch (err) {
         toast.error("Couldn't fetch products");
       }
-    };
-
-    fetchProducts();
+    })();
   }, []);
+
+  // Pagination / Load More
+  const onFetchMoreProducts = async () => {
+    try {
+      // Get reference
+      const productsRef = collection(db, "products");
+
+      // Create a query
+      const q = query(
+        productsRef,
+        where("offer", "==", true),
+        orderBy("timestamp", "desc"),
+        startAfter(lastFetchedProducts),
+        limit(10)
+      );
+
+      // Execute query
+      const querySnap = await getDocs(q);
+
+      const lastVisible = querySnap.docs[querySnap.docs.length - 1];
+
+      setLastFetchedProducts(lastVisible);
+
+      const products = [];
+
+      querySnap.forEach((doc) => {
+        return products.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setProducts((prevState) => [...prevState, ...products]);
+      setLoading(false);
+    } catch (err) {
+      toast.error("Couldn't fetch products");
+    }
+  };
 
   return (
     <div>
@@ -77,6 +118,12 @@ function Offers() {
               ))}
             </ul>
           </main>
+          <br />
+          <br />
+
+          {lastFetchedProducts && (
+            <p onClick={onFetchMoreProducts}>Load More</p>
+          )}
         </>
       ) : (
         <p>No Products for {params.categoryName}</p>
