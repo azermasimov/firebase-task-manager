@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function ProductItem({ product, id }) {
+function ProductItem({ product, id, onDelete }) {
   return (
     <div>
       <li>
@@ -21,6 +21,12 @@ function ProductItem({ product, id }) {
             </p>
           </div>
         </Link>
+
+        {onDelete && (
+          <button onClick={() => onDelete(product.id, product.productName)}>
+            Delete
+          </button>
+        )}
       </li>
     </div>
   );

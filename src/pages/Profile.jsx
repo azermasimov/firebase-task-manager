@@ -1,23 +1,59 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getAuth, updateProfile } from "firebase/auth";
-import { updateDoc, doc } from "firebase/firestore";
+import {
+  updateDoc,
+  doc,
+  collection,
+  getDocs,
+  query,
+  where,
+  orderBy,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../firebase.config";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import ProductItem from "../components/ProductItem";
 
 function Profile() {
   const auth = getAuth();
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState(null);
   const [changeDetails, setChangeDetails] = useState(false);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
   });
 
-  // console.log(auth.currentUser.displayName);
-
   const { name, email } = formData;
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async function fetchUserProduct() {
+      const productRef = collection(db, "products");
+
+      const q = query(
+        productRef,
+        where("userRef", "==", auth.currentUser.uid),
+        orderBy("timestamp", "desc")
+      );
+
+      const querySnap = await getDocs(q);
+
+      let products = [];
+
+      querySnap.forEach((doc) => {
+        return products.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+
+      setProducts(products);
+      setLoading(false);
+    })();
+  }, [auth.currentUser.id]);
 
   const onLogout = () => {
     auth.signOut();
@@ -49,6 +85,18 @@ function Profile() {
       ...prevState,
       [e.target.id]: e.target.value,
     }));
+  };
+
+  const onDelete = async (productId) => {
+    if (window.confirm("Are you sure you wanna delete this product?")) {
+      await deleteDoc(doc(db, "products", productId));
+      const updateProducts = products.filter(
+        (product) => product.id !== productId
+      );
+
+      setProducts(updateProducts);
+      toast.success("Successfully deleted products!");
+    }
   };
 
   return (
@@ -95,6 +143,22 @@ function Profile() {
         <Link to="/create-product">
           <button>Sell Your Product</button>
         </Link>
+
+        {!loading && products?.length > 0 && (
+          <>
+            <p>Your Products</p>
+            <ul>
+              {products.map((product) => (
+                <ProductItem
+                  key={product.id}
+                  product={product.data}
+                  id={product.id}
+                  onDelete={() => onDelete(product.id)}
+                />
+              ))}
+            </ul>
+          </>
+        )}
       </main>
     </div>
   );
