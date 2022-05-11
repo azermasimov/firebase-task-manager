@@ -37,6 +37,10 @@ function Slider() {
     return <Spinner />;
   }
 
+  if (product.length === 0) {
+    return <></>;
+  }
+
   return (
     <div>
       {product && (
