@@ -11,32 +11,37 @@ function Navbar() {
     }
   };
 
-  const black = { color: "black" };
-  const grey = { color: "grey" };
+  const black = { color: "black", cursor: "pointer" };
+  const grey = { color: "grey", cursor: "pointer" };
 
   return (
     <>
-      <nav>
-        <ul>
-          <li
-            style={pathMatchRoute("/") ? black : grey}
-            onClick={() => navigate("/")}
-          >
-            Explore
-          </li>
-          <li
-            style={pathMatchRoute("/offers") ? black : grey}
-            onClick={() => navigate("/offers")}
-          >
-            Offers
-          </li>
-          <li
-            style={pathMatchRoute("/profile") ? black : grey}
-            onClick={() => navigate("/profile")}
-          >
-            Profile
-          </li>
-        </ul>
+      <nav className="navbar navbar-expand-lg fixed-bottom navbar-light bg-light">
+        <div className="container-fluid justify-content-center">
+          <ul className="navbar-nav">
+            <li
+              className="nav-link"
+              style={pathMatchRoute("/") ? black : grey}
+              onClick={() => navigate("/")}
+            >
+              Explore
+            </li>
+            <li
+              className="nav-link"
+              style={pathMatchRoute("/offers") ? black : grey }
+              onClick={() => navigate("/offers")}
+            >
+              Offers
+            </li>
+            <li
+              className="nav-link"
+              style={pathMatchRoute("/profile") ? black : grey}
+              onClick={() => navigate("/profile")}
+            >
+              Profile
+            </li>
+          </ul>
+        </div>
       </nav>
     </>
   );

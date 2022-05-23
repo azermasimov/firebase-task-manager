@@ -34,9 +34,13 @@ function OAuth() {
   };
 
   return (
-    <div>
-      <p>Sign {location.pathname === "/sign-up" ? "up" : "in"}</p>
-      <button onClick={onGoogleClick}>Will be "G" Icon Here</button>
+    <div className="col-auto">
+      <p>Or Sign {location.pathname === "/sign-up" ? "up" : "in"} with:</p>
+      <i
+        class="bi bi-google"
+        onClick={onGoogleClick}
+        style={{ cursor: "pointer", fontSize: "35px" }}
+      ></i>
     </div>
   );
 }

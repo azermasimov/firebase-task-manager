@@ -23,26 +23,37 @@ function ForgotPassword() {
   };
 
   return (
-    <div>
-      <header>
-        <p>Forgot Password</p>
-      </header>
+    <div className="row justify-content-center">
+      <div className="col-md-5 text-center text-md-start">
+        <header>
+          <h4 className="text-center m-5">Forgot Password ?</h4>
+        </header>
 
-      <main>
-        <form onSubmit={onSubmit}>
-          <input
-            type="email"
-            placeholder="Email"
-            id={email}
-            value={email}
-            onChange={onChange}
-          />
+        <main>
+          <form onSubmit={onSubmit}>
+            <div className="form-group">
+              <input
+                className="form-control my-3"
+                type="email"
+                placeholder="Email"
+                id={email}
+                value={email}
+                onChange={onChange}
+              />
+            </div>
 
-          <Link to="/sign-in">Sign In</Link>
+            <div className="d-grid gap-2 mb-4">
+              <button type="button" className="btn btn-primary">
+                Send Reset Link
+              </button>
+            </div>
+          </form>
 
-          <button>Send Reset Link</button>
-        </form>
-      </main>
+          <div className="text-center">
+            <Link to="/sign-in">Sign In</Link>
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

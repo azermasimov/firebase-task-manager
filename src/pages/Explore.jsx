@@ -11,26 +11,31 @@ function Explore() {
       <main>
         <Slider />
 
-        <p>Categories</p>
-        <div>
-          <Link to="/category/male">
-            <div style={{ width: "200px", height: "100px", background: "red" }}>
-              Male
+        <h4>Categories</h4>
+        <div className="row">
+          <div className="col-sm-6">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Products for Male</h5>
+                <p>Bla blablalbalba</p>
+                <Link to="/category/male">
+                  <button className="btn btn-primary">See Products</button>
+                </Link>
+              </div>
             </div>
-            <p>Products for male</p>
-          </Link>
-          <Link to="/category/female">
-            <div style={{ width: "200px", height: "100px", background: "green" }}>
-              Female
+          </div>
+
+          <div className="col-sm-6">
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Products for Female</h5>
+                <p>Bla blablalbalba</p>
+                <Link to="/category/female">
+                  <button className="btn btn-primary">See Products</button>
+                </Link>
+              </div>
             </div>
-            <p>Products for Female</p>
-          </Link>
-          <Link to="/category/both">
-            <div style={{ width: "200px", height: "100px", background: "blue" }}>
-              Both
-            </div>
-            <p>Products for Both</p>
-          </Link>
+          </div>
         </div>
       </main>
     </div>

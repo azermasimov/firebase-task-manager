@@ -104,21 +104,28 @@ function Profile() {
   return (
     <div>
       <header>
-        <p>My Profile</p>
-        <button onClick={onLogout}>Logout</button>
+        <h4>{name}</h4>
+        <button
+          className="float-end btn btn-outline-danger"
+          type="button"
+          onClick={onLogout}
+        >
+          Logout
+        </button>
       </header>
 
       <main>
         <div>
-          <p>Personal Details</p>
-          <p
+          <h6>Personal Details</h6>
+          <button
+            className="btn btn-outline"
             onClick={() => {
               changeDetails && onSubmit();
               setChangeDetails((prevState) => !prevState);
             }}
           >
-            {changeDetails ? "done" : "change"}
-          </p>
+            {changeDetails ? "Done" : "Change"}
+          </button>
         </div>
 
         <div>
@@ -143,7 +150,9 @@ function Profile() {
         </div>
 
         <Link to="/create-product">
-          <button>Sell Your Product</button>
+          <button type="button" className="btn btn-outline">
+            Sell Your Product
+          </button>
         </Link>
 
         {!loading && products?.length > 0 && (

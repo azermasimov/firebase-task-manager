@@ -18,32 +18,34 @@ import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
-    <>
+    <div>
       <Router>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Explore />} />
-          <Route path="/offers" element={<Offers />} />
-          <Route path="/category/:categoryName" element={<Category />} />
-          <Route path="/profile" element={<PrivateRoute />}>
-            <Route path="/profile" element={<Profile />} />
-          </Route>
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/create-product" element={<CreateProduct />} />
-          <Route path="/edit-product/:productId" element={<EditProduct />} />
-          <Route
-            path="/category/:categoryName/:productId"
-            element={<Product />}
-          />
-          <Route path="/contact/:salespersonId" element={<Contact />} />
-        </Routes>
+        <div className="container">
+          <Routes>
+            <Route path="/" element={<Explore />} />
+            <Route path="/offers" element={<Offers />} />
+            <Route path="/category/:categoryName" element={<Category />} />
+            <Route path="/profile" element={<PrivateRoute />}>
+              <Route path="/profile" element={<Profile />} />
+            </Route>
+            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/create-product" element={<CreateProduct />} />
+            <Route path="/edit-product/:productId" element={<EditProduct />} />
+            <Route
+              path="/category/:categoryName/:productId"
+              element={<Product />}
+            />
+            <Route path="/contact/:salespersonId" element={<Contact />} />
+          </Routes>
+        </div>
       </Router>
 
       <ToastContainer />
-    </>
+    </div>
   );
 }
 
