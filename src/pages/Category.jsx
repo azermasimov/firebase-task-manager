@@ -98,21 +98,13 @@ function Category() {
   };
 
   return (
-    <div>
-      <header>
-        <p>
-          {params.categoryName === "male"
-            ? "Products for male"
-            : "Products for female"}
-        </p>
-      </header>
-
-      {loading ? (
-        <Spinner />
-      ) : products && products.length > 0 ? (
-        <>
-          <main>
-            <ul>
+    <div className="category-page-container">
+      <div className="cards-section">
+        {loading ? (
+          <Spinner />
+        ) : products && products.length > 0 ? (
+          <>
+            <div className="cards">
               {products.map((product) => (
                 <ProductItem
                   product={product.data}
@@ -120,21 +112,17 @@ function Category() {
                   key={product.id}
                 />
               ))}
-            </ul>
-          </main>
-
-          <br />
-          <br />
-
-          {lastFetchedProducts && (
-            <p onClick={onFetchMoreProducts}>
-              Load More
-            </p>
-          )}
-        </>
-      ) : (
-        <p>No Products for {params.categoryName}</p>
-      )}
+            </div>
+            {lastFetchedProducts && (
+              <p className="load-more" onClick={onFetchMoreProducts}>
+                Load More
+              </p>
+            )}
+          </>
+        ) : (
+          <p>No Products for {params.categoryName}</p>
+        )}
+      </div>
     </div>
   );
 }

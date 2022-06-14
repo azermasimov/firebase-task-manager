@@ -3,6 +3,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase.config";
 import { toast } from "react-toastify";
+import contactPageSVG from "../assets/svg/contactPageSVG.svg";
 
 function Contact() {
   const [message, setMessage] = useState("");
@@ -27,33 +28,38 @@ function Contact() {
   const onChange = (e) => setMessage(e.target.value);
 
   return (
-    <div>
-      <header>
-        <p>Contact with Sales Person</p>
-      </header>
+    <div className="contact-page-container">
+      <div className="img-container">
+        <img src={contactPageSVG} alt="Contact Page SVG" />
+      </div>
 
       {salesperson !== null && (
-        <main>
-          <div>
-            <p>{salesperson?.name}</p>
+        <div className="contact-container">
+          <h4>Contact with Sales Person</h4>
 
-            <form>
-              <label htmlFor="message">Message</label>
-              <textarea
-                name="message"
-                id="message"
-                onChange={onChange}
-              ></textarea>
-            </form>
-          </div>
+          <input type="text" value={salesperson?.name} disabled />
+
+          <form>
+            <label htmlFor="message">Message: </label>
+            <textarea
+              name="message"
+              id="message"
+              // rows={8}
+              // cols={60}
+              onChange={onChange}
+            ></textarea>
+          </form>
+
           <a
             href={`mailto:${salesperson.email}?Subject=${searchParams.get(
               "productName"
             )}&body=${message}`}
           >
-              <button type="buttton">Send Message</button>
+            <button className="contact-page-btn" type="buttton">
+              Send Message
+            </button>
           </a>
-        </main>
+        </div>
       )}
     </div>
   );

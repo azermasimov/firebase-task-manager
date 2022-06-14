@@ -1,49 +1,76 @@
 import { useNavigate, useLocation } from "react-router-dom";
+import { useRef } from "react";
 
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const pathName = location.pathname;
+
+  const navRef = useRef();
+
+  const showNavbar = () => {
+    navRef.current.classList.toggle("responsive-nav");
+  };
+
   // Use for active button or li
   const pathMatchRoute = (route) => {
-    if (route === location.pathname) {
+    if (route === pathName) {
       return true;
     }
   };
 
-  const black = { color: "black", cursor: "pointer" };
-  const grey = { color: "grey", cursor: "pointer" };
+  const black = {
+    color: "#14171A",
+    cursor: "pointer",
+    fontSize: "20px",
+    fontWeight: "bold",
+  };
+  const grey = { color: "#657786", cursor: "pointer" };
+
+  const header =  (
+    <header>
+      <h3>Logo</h3>
+      <nav ref={navRef}>
+        <a
+          style={pathMatchRoute("/") ? black : grey}
+          onClick={() => navigate("/")}
+        >
+          Explore
+        </a>
+        <a
+          style={pathMatchRoute("/offers") ? black : grey}
+          onClick={() => navigate("/offers")}
+        >
+          Offers
+        </a>
+        <a
+          style={pathMatchRoute("/profile") ? black : grey}
+          onClick={() => navigate("/profile")}
+        >
+          Profile
+        </a>
+        <button className="nav-btn nav-close-btn" onClick={showNavbar}>
+          <i className="bi bi-x"></i>
+        </button>
+      </nav>
+
+      <button className="nav-btn" onClick={showNavbar}>
+        <i className="bi bi-list"></i>
+      </button>
+    </header>
+  );
 
   return (
-    <>
-      <nav className="navbar navbar-expand-lg fixed-bottom navbar-light bg-light">
-        <div className="container-fluid justify-content-center">
-          <ul className="navbar-nav">
-            <li
-              className="nav-link"
-              style={pathMatchRoute("/") ? black : grey}
-              onClick={() => navigate("/")}
-            >
-              Explore
-            </li>
-            <li
-              className="nav-link"
-              style={pathMatchRoute("/offers") ? black : grey }
-              onClick={() => navigate("/offers")}
-            >
-              Offers
-            </li>
-            <li
-              className="nav-link"
-              style={pathMatchRoute("/profile") ? black : grey}
-              onClick={() => navigate("/profile")}
-            >
-              Profile
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </>
+    <div>
+      {pathName !== "/sign-in"
+        ? header
+        : pathName !== "/sign-up"
+        ? header
+        : pathName !== "/forgot-password"
+        ? header
+        : null}
+    </div>
   );
 }
 

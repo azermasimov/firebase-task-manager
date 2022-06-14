@@ -12,12 +12,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
 import { v4 as uuidv4 } from "uuid";
+import productPageSVG from "../assets/svg/product-page.svg";
 
 function CreateProduct() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     category: "",
-    count: 0,
     discountedPrice: 0,
     images: {},
     offer: false,
@@ -28,7 +28,6 @@ function CreateProduct() {
 
   const {
     category,
-    count,
     discountedPrice,
     images,
     offer,
@@ -171,127 +170,165 @@ function CreateProduct() {
   }
 
   return (
-    <div>
-      <header>
-        <p>Create Product</p>
-      </header>
+    <div className="create-product-container">
+      <div className="left-screen">
+        <img src={productPageSVG} alt="Create Product Photo" />
+      </div>
 
-      <main>
-        <form onSubmit={onSubmit}>
-          <label></label>
-          <div>
-            <button
-              type="button"
-              id="type"
-              value="male"
-              style={type === "male" ? { background: "yellow" } : null}
-              onClick={onMutate}
-            >
-              For Man
-            </button>
-            <button
-              type="button"
-              id="type"
-              value="female"
-              style={type === "female" ? { background: "yellow" } : null}
-              onClick={onMutate}
-            >
-              For Woman
-            </button>
-          </div>
+      <div className="right-screen">
+        <h5>Create Product</h5>
 
-          <label>Product Name</label>
-          <input
-            type="text"
-            id="productName"
-            value={productName}
-            onChange={onMutate}
-            maxLength="32"
-            minLength="1"
-            required
-          />
+        <div className="btns-container">
+          <button
+            className="btn"
+            type="button"
+            id="type"
+            value="tayota"
+            style={
+              type === "tayota" ? { color: "white", background: "black" } : null
+            }
+            onClick={onMutate}
+          >
+            Tayota
+          </button>
+          <button
+            className="btn"
+            type="button"
+            id="type"
+            value="volvo"
+            style={
+              type === "volvo" ? { color: "white", background: "black" } : null
+            }
+            onClick={onMutate}
+          >
+            Volvo
+          </button>
+          <button
+            className="btn"
+            type="button"
+            id="type"
+            value="mercedes"
+            style={
+              type === "mercedes"
+                ? { color: "white", background: "black" }
+                : null
+            }
+            onClick={onMutate}
+          >
+            Mercedes
+          </button>
+        </div>
 
-          <label>Category</label>
-          <input
-            type="text"
-            id="category"
-            value={category}
-            onChange={onMutate}
-            maxLength="32"
-            minLength="1"
-            required
-          />
-
-          <label>Count</label>
-          <input
-            type="number"
-            id="count"
-            value={count}
-            onChange={onMutate}
-            required
-          />
-
-          <label>Offer</label>
-          <div>
-            <button
-              type="button"
-              id="offer"
-              value={true}
-              style={offer === true ? { background: "yellow" } : null}
-              onClick={onMutate}
-            >
-              Yes
-            </button>
-            <button
-              type="button"
-              id="offer"
-              value={false}
-              style={offer === false ? { background: "yellow" } : null}
-              onClick={onMutate}
-            >
-              No
-            </button>
-          </div>
-
-          <label>Price</label>
-          <input
-            type="number"
-            id="regularPrice"
-            value={regularPrice}
-            onChange={onMutate}
-            min="0"
-            max="999999"
-            required={offer}
-          />
-          {offer && (
-            <>
-              <label>Discounted Price</label>
+        <div className="form-container">
+          <form onSubmit={onSubmit}>
+            <div className="box-1">
               <input
-                type="number"
-                id="discountedPrice"
-                value={discountedPrice}
+                type="text"
+                id="productName"
+                value={productName}
                 onChange={onMutate}
-                min="0"
-                max="999999"
-                required={offer}
+                placeholder=" Product's Name"
+                maxLength="32"
+                minLength="1"
+                required
               />
-            </>
-          )}
 
-          <label>Images</label>
-          <p>The first image will be the cover (max 6).</p>
-          <input
-            type="file"
-            id="images"
-            onChange={onMutate}
-            max="6"
-            accept=".jpg,.png,.jpeg"
-            multiple
-            required
-          />
-          <button type="submit">Create Product</button>
-        </form>
-      </main>
+              <input
+                type="text"
+                id="category"
+                value={category}
+                onChange={onMutate}
+                placeholder=" Category"
+                maxLength="32"
+                minLength="1"
+                required
+              />
+            </div>
+
+            <div className="box-2 btns-container">
+              <p>Offer: </p>
+
+              <button
+                className="btn"
+                type="button"
+                id="offer"
+                value={true}
+                style={
+                  offer === true
+                    ? { color: "white", background: "black" }
+                    : null
+                }
+                onClick={onMutate}
+              >
+                Yes
+              </button>
+              <button
+                className="btn"
+                type="button"
+                id="offer"
+                value={false}
+                style={
+                  offer === false
+                    ? { color: "white", background: "black" }
+                    : null
+                }
+                onClick={onMutate}
+              >
+                No
+              </button>
+            </div>
+
+            <div className="box-3">
+              <div>
+                <label htmlFor="regularPrice">Price: </label>
+                <input
+                  type="number"
+                  id="regularPrice"
+                  value={regularPrice}
+                  onChange={onMutate}
+                  min="0"
+                  max="999999"
+                  required={offer}
+                />
+              </div>
+              {offer && (
+                <div>
+                  <label htmlFor="discountedPrice">Discounted Price:</label>
+                  <input
+                    type="number"
+                    id="discountedPrice"
+                    value={discountedPrice}
+                    onChange={onMutate}
+                    min="0"
+                    max="999999"
+                    required={offer}
+                  />
+                </div>
+              )}
+            </div>
+
+            <div className="box-4">
+              <div className="file-input-container">
+                <label htmlFor="images">Images: </label>
+                <p>The first image will be the cover (max 6).</p>
+                <input
+                  type="file"
+                  id="images"
+                  onChange={onMutate}
+                  max="6"
+                  accept=".jpg,.png,.jpeg"
+                  multiple
+                  required
+                />
+              </div>
+
+              <button type="submit" className="create-button">
+                Create Product
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

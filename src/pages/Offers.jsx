@@ -98,33 +98,29 @@ function Offers() {
   };
 
   return (
-    <div>
-      <header>
-        <p>Offers</p>
-      </header>
+    <div className="offers-page-container">
+      <h4>Offers</h4>
 
       {loading ? (
         <Spinner />
       ) : products && products.length > 0 ? (
-        <>
-          <main>
-            <ul>
-              {products.map((product) => (
-                <ProductItem
-                  product={product.data}
-                  id={product.id}
-                  key={product.id}
-                />
-              ))}
-            </ul>
-          </main>
-          <br />
-          <br />
+        <div className="cards-section">
+          <div className="cards">
+            {products.map((product) => (
+              <ProductItem
+                product={product.data}
+                id={product.id}
+                key={product.id}
+              />
+            ))}
+          </div>
 
           {lastFetchedProducts && (
-            <p onClick={onFetchMoreProducts}>Load More</p>
+            <p onClick={onFetchMoreProducts} className="load-more">
+              Load More
+            </p>
           )}
-        </>
+        </div>
       ) : (
         <p>No Products for {params.categoryName}</p>
       )}

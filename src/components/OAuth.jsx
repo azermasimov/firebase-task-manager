@@ -34,12 +34,11 @@ function OAuth() {
   };
 
   return (
-    <div className="col-auto">
+    <div className="oauth-container">
       <p>Or Sign {location.pathname === "/sign-up" ? "up" : "in"} with:</p>
       <i
-        class="bi bi-google"
+        className="bi bi-google"
         onClick={onGoogleClick}
-        style={{ cursor: "pointer", fontSize: "35px" }}
       ></i>
     </div>
   );

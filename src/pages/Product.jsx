@@ -35,7 +35,9 @@ function Product() {
   }
 
   return (
-    <main>
+    <div className="product-page-container">
+      {shareLinkCopied && <p className="link-copied">Link Copied!</p>}
+
       <Swiper
         modules={[Navigation, Pagination, Scrollbar, A11y]}
         spaceBetween={50}
@@ -62,14 +64,12 @@ function Product() {
           }, 2000);
         }}
       >
-        <button>Copy</button>
+        <i className="bi bi-share"></i>
       </div>
 
-      {shareLinkCopied && <p>Link Copied!</p>}
-
-      <div>
+      <div className="product-info">
         <p>
-          {product.productName} - $
+          <b>{product.productName}</b> - $
           {product.offer
             ? product.discountedPrice
                 .toString()
@@ -78,10 +78,15 @@ function Product() {
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </p>
-        <p>
-          ${product.offer && product.regularPrice - product.discountedPrice}{" "}
-          Discount
-        </p>
+        {product.discountedPrice && (
+          <p>
+            {" "}
+            ${product.offer &&
+              product.regularPrice - product.discountedPrice}{" "}
+            - <b>Discount</b>
+          </p>
+        )}
+
         <p>{product.category}</p>
         <p>For {product.type}</p>
 
@@ -93,7 +98,7 @@ function Product() {
           </Link>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

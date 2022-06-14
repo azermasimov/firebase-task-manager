@@ -14,12 +14,16 @@ import { db } from "../firebase.config";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import ProductItem from "../components/ProductItem";
+import avatar from "../assets/svg/undraw_male_avatar_323b.svg";
 
 function Profile() {
   const auth = getAuth();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState(null);
   const [changeDetails, setChangeDetails] = useState(false);
+  const [caretIcon, setCaretIcon] = useState(false);
+
+  const menuDisplayStyle = { opacity: "1", display: "block" };
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
     email: auth.currentUser.email,
@@ -102,63 +106,70 @@ function Profile() {
   const onEdit = (productId) => navigate(`/edit-product/${productId}`);
 
   return (
-    <div>
-      <header>
-        <h4>{name}</h4>
-        <button
-          className="float-end btn btn-outline-danger"
-          type="button"
-          onClick={onLogout}
-        >
-          Logout
-        </button>
-      </header>
+    <main className="profile-page">
+      <div className="side">
+        <div className="dropdown">
+          <div className="select">
+            <img src={avatar} alt="User's Photo" />
 
-      <main>
-        <div>
-          <h6>Personal Details</h6>
-          <button
-            className="btn btn-outline"
-            onClick={() => {
-              changeDetails && onSubmit();
-              setChangeDetails((prevState) => !prevState);
-            }}
-          >
-            {changeDetails ? "Done" : "Change"}
-          </button>
+            <i
+              className={`bi bi-caret-${caretIcon ? "up" : "down"}`}
+              onClick={() => setCaretIcon((prevState) => !prevState)}
+            ></i>
+          </div>
+          <ul className="menu" style={caretIcon ? menuDisplayStyle : null}>
+            <li>
+              <h4>{name}</h4>
+            </li>
+            <li
+              onClick={() => {
+                changeDetails && onSubmit();
+                setChangeDetails((prevState) => !prevState);
+              }}
+            >
+              <i class="bi bi-gear-fill"></i>{" "}
+              {changeDetails ? "Done" : "Edit Profile"}
+            </li>
+
+            <li>
+              <form>
+                <input
+                  type="text"
+                  id="name"
+                  disabled={!changeDetails}
+                  value={name}
+                  onChange={onChange}
+                />
+                <input
+                  type="email"
+                  id="email"
+                  disabled={!changeDetails}
+                  value={email}
+                  onChange={onChange}
+                />
+              </form>
+            </li>
+            <li>
+              <Link to="/create-product" style={{ textDecoration: "none" }}>
+                <p>
+                  <i className="bi bi-shop"></i> Make a Product to Sell
+                </p>
+              </Link>
+            </li>
+
+            <li onClick={onLogout}>
+              <i className="bi bi-box-arrow-left"></i> Logout
+            </li>
+          </ul>
         </div>
+      </div>
 
-        <div>
-          <form>
-            {/* Add Active input if changeDetails is true */}
-            <input
-              type="text"
-              id="name"
-              disabled={!changeDetails}
-              value={name}
-              onChange={onChange}
-            />
-
-            <input
-              type="email"
-              id="email"
-              disabled={!changeDetails}
-              value={email}
-              onChange={onChange}
-            />
-          </form>
-        </div>
-
-        <Link to="/create-product">
-          <button type="button" className="btn btn-outline">
-            Sell Your Product
-          </button>
-        </Link>
+      <div className="cards-section">
+        <h5>Your Products</h5>
 
         {!loading && products?.length > 0 && (
           <>
-            <p>Your Products</p>
-            <ul>
+            <div className="cards">
               {products.map((product) => (
                 <ProductItem
                   key={product.id}
@@ -168,11 +179,11 @@ function Profile() {
                   onEdit={() => onEdit(product.id)}
                 />
               ))}
-            </ul>
+            </div>
           </>
         )}
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 

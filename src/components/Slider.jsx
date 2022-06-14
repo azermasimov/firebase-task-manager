@@ -37,20 +37,15 @@ function Slider() {
     return <Spinner />;
   }
 
-  if (product.length === 0) {
-    return <></>;
-  }
-
   return (
-    <div>
+    <div className="slider-container">
       {product && (
-        <div>
-          <p>Recommended</p>
+        <>
+          {/* <p>Recommended</p> */}
 
           <Swiper
-            className="card bg-dark text-white"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={30}
+            spaceBetween={50}
             slidesPerView={1}
             navigation
             pagination={{ clickable: true }}
@@ -63,21 +58,13 @@ function Slider() {
                 key={id}
                 onClick={() => navigate(`/category/${data.type}/${id}`)}
               >
-                <img
-                  className="card-img"
-                  src={data.imgUrls[0]}
-                  alt="Explore Slide"
-                />
-                <div className="card-img-overlay">
-                  <h3 className="card-title">{data.productName}</h3>
-                  <h5 className="card-text">
-                    ${data.discountePrice ?? data.regularPrice}
-                  </h5>
-                </div>
+                <img src={data.imgUrls[0]} alt="Explore Slide" />
+                <p className="title">{data.productName}</p>
+                <p className="price">${data.discountePrice ?? data.regularPrice}</p>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </>
       )}
     </div>
   );

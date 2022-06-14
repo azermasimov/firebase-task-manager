@@ -1,7 +1,12 @@
 function Spinner() {
   return (
-    <div>Loading Spinner will be here</div>
-  )
+    <div className="spinner-container">
+      <div className="spinner">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
 
 export default Spinner;

@@ -3,41 +3,34 @@ import Slider from "../components/Slider";
 
 function Explore() {
   return (
-    <div>
-      <header>
-        <p>Explore</p>
-      </header>
-
-      <main>
+    <div className="explore-page-container">
+      <div className="box-1">
         <Slider />
+      </div>
 
+      <div className="box-2">
         <h4>Categories</h4>
-        <div className="row">
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Products for Male</h5>
-                <p>Bla blablalbalba</p>
-                <Link to="/category/male">
-                  <button className="btn btn-primary">See Products</button>
-                </Link>
-              </div>
-            </div>
+
+        <div className="category-titles">
+          <div>
+            <Link to="/category/tayota">
+              <button type="button" className="btn explore-page">Tayota</button>
+            </Link>
           </div>
 
-          <div className="col-sm-6">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Products for Female</h5>
-                <p>Bla blablalbalba</p>
-                <Link to="/category/female">
-                  <button className="btn btn-primary">See Products</button>
-                </Link>
-              </div>
-            </div>
+          <div>
+            <Link to="/category/volvo">
+              <button type="button" className="btn explore-page">Volvo</button>
+            </Link>
+          </div>
+
+          <div>
+            <Link to="/category/mercedes">
+              <button type="button" className="btn explore-page">Mercedes</button>
+            </Link>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

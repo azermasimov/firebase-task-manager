@@ -2,55 +2,43 @@ import { Link } from "react-router-dom";
 
 function ProductItem({ product, id, onEdit, onDelete }) {
   return (
-    <div className="container" style={{ maxWidth: "540px" }}>
-      <li className="col">
+    <div className="card">
+      <div className="card-info">
+        <img src={product.imgUrls[0]} alt={product.productName} />
+
+        <div>
+          <h6>{product.productName}</h6>
+          <p>{product.category}</p>
+        </div>
+        <p>
+          $
+          {product.offer
+            ? product.discountedPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : product.regularPrice
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </p>
+      </div>
+      <div className="card-links">
         <Link to={`/category/${product.type}/${id}`}>
-          <div className="row">
-            <img
-              className="img-fluid rounded-start"
-              src={product.imgUrls[0]}
-              alt={product.productName}
-            />
-          </div>
-          <div className="row">
-            <div>
-              <h5>{product.productName}</h5>
-              <p>{product.shopName}</p>
-              <p>
-                $
-                {product.offer
-                  ? product.discountedPrice
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                  : product.regularPrice
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-              </p>
-            </div>
-          </div>
+          <p>See Product</p>
         </Link>
-        <div className="row">
+        <div>
           {onDelete && (
-            <button
-              type="button"
-              className="btn btn-outline-danger"
-              onClick={() => onDelete(product.id, product.productName)}
-            >
-              Delete
+            <button onClick={() => onDelete(product.id, product.productName)}>
+              <i className="bi bi-trash-fill"></i>
             </button>
           )}
 
           {onEdit && (
-            <button
-              type="button"
-              className="btn btn-outline-info"
-              onClick={() => onEdit(id)}
-            >
-              Edit
+            <button onClick={() => onEdit(id)}>
+              <i className="bi bi-pen-fill"></i>
             </button>
           )}
         </div>
-      </li>
+      </div>
     </div>
   );
 }
