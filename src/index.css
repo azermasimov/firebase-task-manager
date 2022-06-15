@@ -35,6 +35,11 @@ header {
   z-index: 999;
 }
 
+header h3 {
+  color: var(--black);
+  cursor: pointer;
+}
+
 nav a {
   margin: 0 2rem;
   color: var(--extrExtraLightGray);
@@ -177,17 +182,8 @@ main {
 
 /* Sign-in Page Styles /////////////////////////////////////////////////////////////////////////////////////*/
 
-.wave {
-  position: fixed;
-  height: 100%;
-  left: 0;
-  bottom: 0;
-  filter: grayscale(100%);
-  z-index: -1;
-}
-
 .container {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -319,21 +315,15 @@ form .flex {
   font-size: 1.2rem;
   outline: none;
   border: none;
-  background-image: linear-gradient(
-    to right,
-    var(--dark-gray),
-    var(--light-gray),
-    var(--dark-gray)
-  );
   cursor: pointer;
-  color: var(--extrExtraLightGray);
   text-transform: uppercase;
   background-size: 200%;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .sign-btn:hover {
-  background-position: right;
+  background-color: var(--black);
+  color: var(--extrExtraLightGray);
 }
 
 .sign-footer-container {
@@ -346,13 +336,13 @@ form .flex {
 }
 
 .bi.bi-google {
-  color: var(--dark-gray);
+  color: var(--black);
   cursor: pointer;
   font-size: 35px;
 }
 
 .bi.bi-google:hover {
-  color: var(--light-gray);
+  color: #db4437;
 }
 
 /* Profile Page Styles ///////////////////////////////////////////////////////////////////////////////////////// */
@@ -360,87 +350,79 @@ form .flex {
 .profile-page {
   width: 100%;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: nowrap;
 }
 
-.side {
-  width: 30%;
+.profile-page .side {
+  width: 25%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 }
 
-.side .dropdown {
-  width: 15rem;
-  height: 3.5rem;
-  background-color: #fff;
-  color: var(--black);
-  border-radius: 0.8rem;
-  margin-top: 10px;
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-  padding: 1em;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  transition: background 0.3s;
+.profile-page .side img {
+  width: 3rem;
+  margin: 0.8rem 3rem;
 }
 
-.side .dropdown:hover {
+.profile-page .side h4 {
+  text-align: center;
+  margin: 1rem;
+}
+
+.side .edit-profile {
+  text-align: center;
+  padding: 1rem;
+  width: 250px;
+  border-radius: 0.4rem;
   background-color: var(--extraLightGray);
-}
-
-.side .dropdown .select {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.side .menu {
-  list-style: none;
-  padding: 0.2em 0.5em;
-  background-color: #fff;
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
-  border-radius: 0.5em;
-  color: var(--black);
-  width: 15rem;
-  opacity: 0;
-  display: none;
-  transition: 0.2s;
-  z-index: 1;
-}
-
-.menu form {
-  background-color: var(--extrExtraLightGray);
-  border-radius: 0.8rem;
-}
-
-.menu form input {
-  width: 16vw;
-  height: 1.5rem;
-  margin: 0.5rem 0.5rem;
-  border-radius: 1rem;
-  border: none;
-}
-
-.menu li {
-  padding: 0.7em 0.5em;
-  margin: 0.3em 0;
-  border-radius: 0.5em;
   cursor: pointer;
 }
 
-.menu li:hover {
-  background-color: var(--extrExtraLightGray);
+.side form {
+  text-align: center;
+  margin: 1rem 0;
 }
 
-.dropdown img {
-  width: 35px;
+.side form input {
+  background-color: var(--extraLightGray);
+  margin: 0.2rem 0;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 0.4rem;
+}
+
+.make-product-btn {
+  text-align: center;
+  width: 250px;
+  padding: 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--extraLightGray);
+  cursor: pointer;
+}
+
+.make-product-btn:hover {
+  background-color: var(--light-gray);
+}
+
+.logout-btn {
+  text-align: center;
+  width: 250px;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 0.4rem;
+  background-color: var(--extrExtraLightGray);
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: red;
+  color: var(--extrExtraLightGray);
 }
 
 .cards-section {
-  width: 70%;
+  width: 75%;
 }
 
 .cards-section h5 {
@@ -449,29 +431,28 @@ form .flex {
 }
 
 .cards-section .cards {
+  width: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
+/* Product Item Component ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
 .cards .card {
   width: 20rem;
-  margin: 0.3rem;
+  margin: 0.3rem 0;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    to left top,
-    rgba(255, 255, 255, 0.8),
-    rgba(255, 255, 255, 0.5)
-  );
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .card-info {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -559,13 +540,14 @@ form .flex {
 
 .right-screen .btns-container button {
   margin: 0.3rem;
+  padding: 0.4rem;
 }
 
 .btns-container .btn {
   display: block;
   width: 100%;
   height: 85%;
-  border-radius: 0.8rem;
+  border-radius: 0.4rem;
   margin: 1rem 0;
   font-size: 1.1rem;
   outline: none;
@@ -637,20 +619,20 @@ form .flex {
   display: block;
   width: 100%;
   height: 50px;
-  border-radius: 25px;
+  border-radius: 0.4rem;
   margin: 1rem 0;
+  padding: 0.8rem;
   font-size: 1rem;
   outline: none;
   border: none;
-  background-color: var(--extraLightGray);
   cursor: pointer;
   color: var(--black);
   background-size: 200%;
 }
 
 .create-button:hover {
-  background-color: var(--light-gray);
-  color: #fff;
+  background-color: var(--black);
+  color: var(--extrExtraLightGray);
 }
 
 /* Spinner Component Style /////////////////////////////////////////////////////////////////////////////////*/
@@ -815,6 +797,84 @@ form .flex {
   color: var(--extrExtraLightGray);
 }
 
+/* Contact Us Page Container ///////////////////////////////////////////////////////////////////////////////*/
+
+.contact-us-page-container {
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 6rem 2rem;
+}
+
+.contact-us-page-container .map-container {
+  width: 45%;
+  height: 85vh;
+}
+
+.contact-us-page-container .contact-container {
+  width: 45%;
+  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-container .contact-info ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.contact-container .contact-info ul li {
+  margin: 0.4rem;
+}
+
+.contact-container .form-container {
+  width: 100%;
+}
+
+.contact-container .form-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 1.6rem;
+}
+
+.contact-container .form-container form input,
+.contact-container .form-container form textarea {
+  width: 100%;
+  height: 1.8rem;
+  border-radius: 10px;
+  margin: 0.2rem 0;
+  border: 1px solid var(--light-gray);
+  padding: 0.8rem;
+}
+
+.contact-container .form-container form textarea {
+  height: 10rem;
+}
+
+.contact-us-btn {
+  margin: 0.8rem 0;
+  height: 2.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0 0.8rem;
+  cursor: pointer;
+}
+
+.contact-us-btn:hover {
+  background-color: var(--black);
+  color: var(--extrExtraLightGray);
+}
+
 /* Media Styles ////////////////////////////////////////////////////////////////////////////////////////////*/
 
 @media only screen and (max-width: 1024px) {
@@ -851,7 +911,7 @@ form .flex {
   }
 
   nav a {
-    font-size: 1.5 rem;
+    font-size: 1rem;
   }
 }
 
@@ -885,10 +945,6 @@ form .flex {
 
   .container {
     grid-template-columns: 1fr;
-  }
-
-  .wave {
-    display: none;
   }
 
   .login-container {
@@ -932,7 +988,6 @@ form .flex {
   }
 }
 
-
 @media screen and (max-width: 900px) {
   .contact-page-container .img-container {
     display: none;
@@ -944,5 +999,38 @@ form .flex {
 
   .contact-page-btn {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 840px) {
+  .contact-us-page-container .map-container {
+    display: none;
+  }
+
+  .contact-us-page-container .contact-container {
+    width: 100%;
+  }
+
+  .contact-container .form-container form {
+    width: 100%;
+  }
+
+  .contact-container .form-container form {
+    margin: 0.4rem;
+  }
+
+  .contact-us-btn {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .contact-us-page-container {
+    margin: 0;
+  }
+
+  .contact-container .contact-info ul {
+    margin: 0.8rem 0;
   }
 }

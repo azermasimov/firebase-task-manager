@@ -280,7 +280,7 @@ function CreateProduct() {
 
             <div className="box-3">
               <div>
-                <label htmlFor="regularPrice">Price: </label>
+                <label htmlFor="regularPrice">Price per hour: </label>
                 <input
                   type="number"
                   id="regularPrice"
@@ -293,7 +293,7 @@ function CreateProduct() {
               </div>
               {offer && (
                 <div>
-                  <label htmlFor="discountedPrice">Discounted Price:</label>
+                  <label htmlFor="discountedPrice">Discounted Price (more than days):</label>
                   <input
                     type="number"
                     id="discountedPrice"

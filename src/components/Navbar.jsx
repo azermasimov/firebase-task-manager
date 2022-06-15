@@ -50,6 +50,12 @@ function Navbar() {
         >
           Profile
         </a>
+        <a
+          style={pathMatchRoute("/contact-us") ? black : grey}
+          onClick={() => navigate("/contact-us")}
+        >
+          Contact
+        </a>
         <button className="nav-btn nav-close-btn" onClick={showNavbar}>
           <i className="bi bi-x"></i>
         </button>

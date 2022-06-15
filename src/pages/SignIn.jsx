@@ -5,7 +5,6 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import OAuth from "../components/OAuth";
 import signInSVG from "../assets/svg/undraw_access_account_re_8spm.svg";
 import avatar from "../assets/svg/undraw_male_avatar_323b.svg";
-import wave from "../assets/photos/wave.png";
 
 function SignIn() {
   const inputAnimationStyle = {
@@ -51,9 +50,7 @@ function SignIn() {
   };
 
   return (
-    <div className="sign-page">
-      <img className="wave" src={wave} alt="Wave for login page" />
-      
+    <div>
       <div className="container">
         <div className="img">
           <img src={signInSVG} alt="Login SVG (Photo)" />

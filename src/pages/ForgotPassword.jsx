@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { toast } from "react-toastify";
-import wave from "../assets/photos/wave.png";
 import forgotPasswordSVG from "../assets/svg/undraw_forgot_password_re_hxwm.svg";
 import avatar from "../assets/svg/undraw_male_avatar_323b.svg";
 
@@ -32,8 +31,6 @@ function ForgotPassword() {
 
   return (
     <div className="sign-page">
-      <img className="wave" src={wave} alt="Wave for login page" />
-
       <div className="container">
         <div className="img">
           <img src={forgotPasswordSVG} alt="Forgot-Password SVG (Photo)" />
