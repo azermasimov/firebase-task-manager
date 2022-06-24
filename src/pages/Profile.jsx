@@ -117,26 +117,28 @@ function Profile() {
             setChangeDetails((prevState) => !prevState);
           }}
         >
-          <i class="bi bi-gear-fill"></i>{" "}
+          <i className="bi bi-gear-fill"></i>{" "}
           {changeDetails ? "Done" : "Edit Profile"}
         </div>
 
-        <form>
-          <input
-            type="text"
-            id="name"
-            disabled={!changeDetails}
-            value={name}
-            onChange={onChange}
-          />
-          <input
-            type="email"
-            id="email"
-            disabled={!changeDetails}
-            value={email}
-            onChange={onChange}
-          />
-        </form>
+        <div>
+          <form>
+            <input
+              type="text"
+              id="name"
+              disabled={!changeDetails}
+              value={name}
+              onChange={onChange}
+            />
+            <input
+              type="email"
+              id="email"
+              disabled={!changeDetails}
+              value={email}
+              onChange={onChange}
+            />
+          </form>
+        </div>
 
         <div className="make-product-btn">
           <Link to="/create-product" style={{ textDecoration: "none" }}>

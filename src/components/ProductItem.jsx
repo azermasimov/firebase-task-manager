@@ -21,6 +21,7 @@ function ProductItem({ product, id, onEdit, onDelete }) {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
         </p>
       </div>
+      
       <div className="card-links">
         <Link to={`/category/${product.type}/${id}`}>
           <p>See Product</p>

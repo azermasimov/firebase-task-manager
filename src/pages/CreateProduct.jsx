@@ -239,7 +239,7 @@ function CreateProduct() {
                 value={category}
                 onChange={onMutate}
                 placeholder=" Category"
-                maxLength="32"
+                maxLength="160"
                 minLength="1"
                 required
               />
