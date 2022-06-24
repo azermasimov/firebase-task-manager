@@ -28,7 +28,7 @@ header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 70px;
+  height: 65px;
   padding: 0 2rem;
   background-color: var(--extraLightGray);
   color: var(--extrExtraLightGray);
@@ -59,7 +59,7 @@ header .nav-btn {
 }
 
 main {
-  margin-top: 70px;
+  margin-top: 65px;
 }
 
 @media only screen and (max-width: 1024px) {
@@ -72,7 +72,7 @@ main {
     position: fixed;
     top: 0;
     left: 0;
-    height: 70vh;
+    height: 100vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -103,38 +103,26 @@ main {
 /* Explore Page Styles ///////////////////////////////////////////////////////////////////////////////////*/
 
 .explore-page-container {
+  width: 100%;
+  height: 100vh;
+}
+
+.explore-page-container .hero-section {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: row;
-}
-
-.explore-page-container .box-1 {
-  width: 50%;
-}
-
-.explore-page-container .box-2 {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.explore-page-container h4 {
-  margin: 2rem;
-}
-
-.explore-page-container .box-2 .category-titles {
-  display: flex;
-  flex-direction: row;
-}
-
 .btn.explore-page {
   margin: 0.8rem;
-  padding: 0.8rem;
+  padding: 0.4rem 0.8rem;
   border: none;
-  border-radius: 0.8rem;
+  border-radius: 0.2rem;
   cursor: pointer;
-  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5em 1em rgba(0, 0, 0, 1.2);
 }
 
 .btn.explore-page:hover {
@@ -147,13 +135,11 @@ main {
     flex-direction: column;
     place-items: center;
   }
+}
 
-  .explore-page-container .box-1 {
-    width: 100%;
-    height: 100vh;
-  }
 
-  .explore-page-container .box-2 .category-titles {
+@media screen and (max-width: 300px) {
+  .explore-page-container .hero-section {
     flex-direction: column;
   }
 }
@@ -210,7 +196,7 @@ main {
   height: auto;
   background: var(--black);
 }
-
+/* 
 .slider-container img {
   width: 100%;
   height: auto;
@@ -237,7 +223,7 @@ main {
   position: absolute;
   top: 90%;
   left: 0;
-}
+} */
 
 /* Sign-in Page Styles /////////////////////////////////////////////////////////////////////////////////////*/
 
@@ -655,16 +641,11 @@ form .flex {
 
 .create-product-container {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   /* flex-direction: row;
   justify-content: center;
   align-items: center; */
-}
-
-.create-product-container p,
-.create-product-container label {
-  font-size: 1.2rem;
 }
 
 .left-screen {
@@ -694,6 +675,7 @@ form .flex {
 }
 
 .right-screen .btns-container {
+  width: 50%;
   display: flex;
   flex-direction: row;
   /* flex-wrap: nowrap; */
@@ -701,7 +683,7 @@ form .flex {
 
 .right-screen .btns-container button {
   margin: 0.3rem;
-  padding: 0.4rem;
+  padding: 0.4rem 0.4rem;
 }
 
 .btns-container .btn {
@@ -727,6 +709,9 @@ form .flex {
 
 .form-container .box-1 input {
   margin: 0.3rem 0;
+  padding: 5px;
+  background-color: var(--extrExtraLightGray);
+  border-radius: 5px;
   border: none;
   outline: none;
 }
@@ -899,7 +884,7 @@ form .flex {
 
 .product-page-container img {
   width: 400px;
-  height: 250px;
+  height: auto;
   border-radius: 2rem;
   display: block;
 }

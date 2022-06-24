@@ -120,7 +120,7 @@ function Category() {
             )}
           </>
         ) : (
-          <p>No Products for {params.categoryName}</p>
+          <p>No Products to {params.categoryName}</p>
         )}
       </div>
     </div>

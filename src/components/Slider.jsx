@@ -41,7 +41,7 @@ function Slider() {
     <div className="slider-container">
       {product && (
         <>
-          {/* <p>Recommended</p> */}
+          <p>Recommended</p>
 
           <Swiper
             modules={[Navigation, Pagination, Scrollbar, A11y]}

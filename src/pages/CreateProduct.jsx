@@ -23,7 +23,7 @@ function CreateProduct() {
     offer: false,
     productName: "",
     regularPrice: 0,
-    type: "",
+    type: "rent",
   });
 
   const {
@@ -118,7 +118,7 @@ function CreateProduct() {
       [...images].map((image) => storeImage(image))
     ).catch(() => {
       setLoading(false);
-      toast.error("Immages not uploaded!");
+      toast.error("Images not uploaded!");
       return;
     });
 
@@ -177,45 +177,32 @@ function CreateProduct() {
 
       <div className="right-screen">
         <h5>Create Product</h5>
+        <p>Click which you want to do! </p>
 
         <div className="btns-container">
           <button
             className="btn"
             type="button"
             id="type"
-            value="tayota"
+            value="buy"
             style={
-              type === "tayota" ? { color: "white", background: "black" } : null
+              type === "buy" ? { color: "white", background: "black" } : null
             }
             onClick={onMutate}
           >
-            Tayota
+            Sell
           </button>
           <button
             className="btn"
             type="button"
             id="type"
-            value="volvo"
+            value="rent"
             style={
-              type === "volvo" ? { color: "white", background: "black" } : null
+              type === "rent" ? { color: "white", background: "black" } : null
             }
             onClick={onMutate}
           >
-            Volvo
-          </button>
-          <button
-            className="btn"
-            type="button"
-            id="type"
-            value="mercedes"
-            style={
-              type === "mercedes"
-                ? { color: "white", background: "black" }
-                : null
-            }
-            onClick={onMutate}
-          >
-            Mercedes
+            Rent
           </button>
         </div>
 
@@ -227,7 +214,7 @@ function CreateProduct() {
                 id="productName"
                 value={productName}
                 onChange={onMutate}
-                placeholder=" Product's Name"
+                placeholder="Car's Name"
                 maxLength="32"
                 minLength="1"
                 required
@@ -238,7 +225,7 @@ function CreateProduct() {
                 id="category"
                 value={category}
                 onChange={onMutate}
-                placeholder=" Category"
+                placeholder="Specifications"
                 maxLength="160"
                 minLength="1"
                 required
@@ -280,27 +267,27 @@ function CreateProduct() {
 
             <div className="box-3">
               <div>
-                <label htmlFor="regularPrice">Price per hour: </label>
+                <label htmlFor="regularPrice">Price: </label>
                 <input
                   type="number"
                   id="regularPrice"
                   value={regularPrice}
                   onChange={onMutate}
                   min="0"
-                  max="999999"
+                  max="999999999"
                   required={offer}
                 />
               </div>
               {offer && (
                 <div>
-                  <label htmlFor="discountedPrice">Discounted Price (more than days):</label>
+                  <label htmlFor="discountedPrice">Discounted Price:</label>
                   <input
                     type="number"
                     id="discountedPrice"
                     value={discountedPrice}
                     onChange={onMutate}
                     min="0"
-                    max="999999"
+                    max="999999999"
                     required={offer}
                   />
                 </div>
